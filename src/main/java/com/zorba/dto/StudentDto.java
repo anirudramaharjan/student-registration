@@ -1,6 +1,5 @@
 package com.zorba.dto;
 
-import org.springframework.stereotype.Component;
 
 
 public class StudentDto {
