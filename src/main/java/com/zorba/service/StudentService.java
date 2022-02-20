@@ -14,7 +14,7 @@ public class StudentService {
 	StudentRepository studentRepo;
 
 
-	public Student saveData(Student studentDto) {
+	public Student saveData(StudentDto studentDto) {
 		Student student = new Student(studentDto.getUserName(), studentDto.getPassword(), studentDto.getFirstName(), studentDto.getMiddleName(), studentDto.getLastName(), studentDto.getEmail(), studentDto.getAddress(), studentDto.getPhone());
 		return studentRepo.save(student);
 

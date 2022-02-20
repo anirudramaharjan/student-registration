@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
@@ -16,16 +17,18 @@
 			<div class="col-md-6 col-md-offset-3">
 			
 				<!-- success message -->
-				<div th:if="${param.success}">
+
+ 				<div th:if="${param.success}">
 					<div class="alert alert-info">You've successfully created the
 						user!</div>
 				</div>
+ 
 
  
 				<h1>Student Registration Form</h1>
 				<br> <br>
 
-				<form th:action="@{/student/studentCreation}" method="post"
+				<form th:action="@{/student/studentCreate}" method="post"
 					th:object="${student}">
 					<div class="form-group">
 						<label class="control-label" for="userName"> User Name </label> <input
@@ -84,4 +87,4 @@
 
 				</form>
 </body>
-</html>
+</html >
