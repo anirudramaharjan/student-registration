@@ -17,11 +17,13 @@
 			<div class="col-md-6 col-md-offset-3">
 			
 				<!-- success message -->
+
  				<div th:if="${param.success}">
 					<div class="alert alert-info">You've successfully created the
 						user!</div>
 				</div>
  
+
  
 				<h1>Student Registration Form</h1>
 				<br> <br>
@@ -80,7 +82,7 @@
 				<div class="form-group">
 						<button type="submit" class="btn btn-success">Create User</button>
 						<br> <br> <span>Already registered? <a href="/"
-							th:href="@{/login}">Login here</a></span>
+							th:href="@{/}">Login here</a></span>
 					</div>
 
 				</form>

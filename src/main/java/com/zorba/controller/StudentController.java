@@ -1,7 +1,9 @@
 package com.zorba.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +23,19 @@ public class StudentController {
 
 	@Autowired
 	StudentService studentService;
+	
+	@GetMapping(value = "/registration")
+	public String registration(Student student) {
+		return "registration";
+	}
+
+
+	@PostMapping(value = "/studentCreation")
+	public String userCreation(Student student) {
+		studentService.saveData(student);
+		return "redirect:/registration?success";
+		
+	}
 
 
 
@@ -39,10 +54,7 @@ public class StudentController {
 	public String getUserLogin() {
 		return "login";
 	}
-//	@PostMapping("/studentCreate")
-//	public Student postUser(@ModelAttribute("student")  Student student) {
-//		return studentRepo.save(student);
-//	}
+
 
 	
 
