@@ -15,13 +15,17 @@ public class TemplateController {
 	@Autowired
 	StudentRepository studentRepo;
 
+	@GetMapping(value ="/")
+	public String home() {
+		return "index";
+	}
 	@GetMapping(value = "/registration")
 	public String getRegistrationForm(Student student) {
 		return "registration";
 	}
 
-	@GetMapping(value ="/")
-	public String home() {
+	@GetMapping(value ="/login")
+	public String loginPage() {
 		return "login";
 	}
 
