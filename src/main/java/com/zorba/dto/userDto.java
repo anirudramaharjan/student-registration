@@ -1,9 +1,6 @@
 package com.zorba.dto;
 
-import org.springframework.stereotype.Component;
-
-
-public class StudentDto {
+public class userDto {
 
 	private String userName;
 	private String password;
@@ -13,7 +10,7 @@ public class StudentDto {
 	private String email;
 	private String address;
 	private String phone;
-	public StudentDto(String userName, String password, String firstName, String middleName, String lastName,
+	public userDto(String userName, String password, String firstName, String middleName, String lastName,
 			String email, String address, String phone) {
 		super();
 		this.userName = userName;

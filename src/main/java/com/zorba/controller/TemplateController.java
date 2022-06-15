@@ -1,33 +1,54 @@
 package com.zorba.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import java.util.List;
 
-import com.zorba.model.Student;
-import com.zorba.repository.StudentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.zorba.model.User;
+import com.zorba.repository.UserRepository;
 
 @Controller
 public class TemplateController {
 
 	@Autowired
-	StudentRepository studentRepo;
+	UserRepository userRepo;
 
-	@GetMapping(value ="/")
-	public String home() {
+	@GetMapping("")
+	public String viewHomePage() {
 		return "index";
 	}
-	@GetMapping(value = "/registration")
-	public String getRegistrationForm(Student student) {
-		return "registration";
+
+	@GetMapping("/register")
+	public String showRegistrationForm(Model model) {
+		model.addAttribute("user", new User());
+		return "signup_form";
 	}
 
-	@GetMapping(value ="/login")
-	public String loginPage() {
-		return "login";
+	@PostMapping("/process_register")
+	public String processRegister(User user) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String encodedPassword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(encodedPassword);
+		userRepo.save(user);
+		return "register_success";
 	}
 
+	@GetMapping("/users")
+	public String listUsers(Model model) {
+		List<User> listUsers = (List<User>) userRepo.findAll();
+		model.addAttribute("listUsers", listUsers);
+		return "users";
+	}
+	
+	@GetMapping("/google")
+	public String gotoGoogle() {
+
+		return "www.google.com";
+	}
 
 }

@@ -1,12 +1,14 @@
 package com.zorba.repository;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.zorba.model.Student;
+import com.zorba.model.User;
 
 
 @Repository
-public interface StudentRepository extends CrudRepository<Student, Long> {
-
+public interface UserRepository extends CrudRepository<User, Long> {
+    @Query("SELECT u FROM User u WHERE u.email = ?1")
+    public User findByEmail(String email);
 }
